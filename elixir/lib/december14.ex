@@ -53,6 +53,7 @@ defmodule December14 do
     end
 
     File.close(file)
+    IO.puts("Check tree.txt for results")
   end
 
   ##### Loading data #####
@@ -160,5 +161,4 @@ defmodule December14 do
 
     [upper_left, upper_right, lower_left, lower_right]
   end
-
 end
