@@ -5,6 +5,7 @@ defmodule December15 do
   @wall_character "#"
 
 
+  # Day 15 - Part 1 solution
   def part1 do
     {map, robot, moves} = read(15) |> get_problem()
 
@@ -18,6 +19,8 @@ defmodule December15 do
 
     IO.puts("The sum of the boxes coordinates is #{coordinates}")
   end
+
+  # Day 15 - part 2 solution
 
   def part2 do
 
