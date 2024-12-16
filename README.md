@@ -1,2 +1,3 @@
 # AdventOfCode2024
-puzzles
+
+Initially to practicing / learning Elixir - not intended
