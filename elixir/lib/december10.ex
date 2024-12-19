@@ -1,5 +1,6 @@
 defmodule December10 do
   import Data
+  import Maps.CodepointMap
 
   ##### Day 10 - Part 1 solution #####
 
@@ -74,6 +75,9 @@ defmodule December10 do
 
       current == 0 and !allow_alternates ->
         get_adjacent(map, position)
+        |> Enum.filter(fn {adj_r, adj_c} ->
+          map[adj_r][adj_c] == map[r][c] + 1
+        end)
         |> Enum.map(fn coord ->
           get_trails(map, coord, allow_alternates, current_trail)
         end)
@@ -82,6 +86,9 @@ defmodule December10 do
 
       current == 0 ->
         get_adjacent(map, position)
+        |> Enum.filter(fn {adj_r, adj_c} ->
+          map[adj_r][adj_c] == map[r][c] + 1
+        end)
         |> Enum.map(fn coord ->
           get_trails(map, coord, allow_alternates, current_trail)
         end)
@@ -89,10 +96,12 @@ defmodule December10 do
 
       true ->
         get_adjacent(map, position)
+        |> Enum.filter(fn {adj_r, adj_c} ->
+          map[adj_r][adj_c] == map[r][c] + 1
+        end)
         |> Enum.map(fn coord ->
           get_trails(map, coord, allow_alternates, current_trail)
         end)
     end
   end
-
 end

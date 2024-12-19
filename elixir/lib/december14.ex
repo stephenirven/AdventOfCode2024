@@ -1,5 +1,6 @@
 defmodule December14 do
   import Data
+  import Maps.StringMap
 
   # Day 14 - part 1 solution
 

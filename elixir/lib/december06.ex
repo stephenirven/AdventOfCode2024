@@ -1,5 +1,6 @@
 defmodule December06 do
   import Data
+  import Maps.StringMap
 
   @directions %{
     0 => {{-1, 0}, "↑"},
@@ -38,7 +39,6 @@ defmodule December06 do
     blocks = seen_squares_block(map, position, 0, map_size(map), String.length(map[0]))
 
     IO.puts("The number of possible blocks is #{map_size(blocks)}")
-
   end
 
   ##### Get a direction from the provided index #####
@@ -82,7 +82,7 @@ defmodule December06 do
     {map, position}
   end
 
-##### Get a map of seen squares and a list of moves from the guard's route #####
+  ##### Get a map of seen squares and a list of moves from the guard's route #####
 
   def seen_squares(map, position, direction) do
     seen_squares(map, position, direction, map_size(map), String.length(map[0]))
@@ -286,12 +286,12 @@ defmodule December06 do
       |> Enum.with_index()
       |> Enum.map(fn {val, col} ->
         cond do
-
           Map.has_key?(seen, {row, col}) ->
             Map.get(seen, {row, col}) |> Enum.random()
-            # There may be multiple arrows for thsi square.
-            # This will do for first draft visualisation as we
-            # don't have suitable symbols
+
+          # There may be multiple arrows for thsi square.
+          # This will do for first draft visualisation as we
+          # don't have suitable symbols
 
           true ->
             val
@@ -358,6 +358,4 @@ defmodule December06 do
         direction_num
     end
   end
-
-
 end

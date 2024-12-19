@@ -2,6 +2,7 @@ defmodule December17Test do
   use ExUnit.Case
   doctest December17
   import December17
+  import Data
 
   @cases """
   Register A: 729
@@ -39,5 +40,20 @@ defmodule December17Test do
       run_until_match({0, b, c}, instructions_map, instructions_list)
 
     assert result == 117_440
+  end
+
+  test "run from " do
+    {machine = {_a, b, c}, instructions_map, instructions_list} =
+      read("17")
+      |> get_problem()
+
+    start = 281_475_000_000_000
+    IO.puts(start)
+    finish = start + 1000
+    run_from(machine, instructions_map, start, finish, instructions_list)
+    # 2,4,1,3,7,5,4,2,0,3,1,5,5,5,3,0
+
+    # extra digit at 8, 64, 512
+    # 2^3, 2^6, 2^9
   end
 end

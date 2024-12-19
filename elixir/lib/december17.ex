@@ -28,14 +28,14 @@ defmodule December17 do
   def part2 do
     IO.puts("Brute force on this will not complete in a reasonable time.")
     IO.puts("Solution to be added.")
-    Process.exit(self(), :heat_death_of_the_universe)
+    # Process.exit(self(), :heat_death_of_the_universe)
 
     {{_a, b, c}, instructions_map, instructions_list} =
       read("17")
       |> get_problem()
 
     result =
-      run_until_match({0, b, c}, instructions_map, instructions_list)
+      run_until_match({trunc(:math.pow(2, 3 * 16)), b, c}, instructions_map, instructions_list)
 
     IO.puts("The lowest value for register A that outputs its own instructions is: #{result} ")
   end
@@ -155,6 +155,21 @@ defmodule December17 do
         result = trunc(a / Integer.pow(2, combo_operand))
         run({a, b, result}, instructions, instruction_pointer + 2, output)
     end
+  end
+
+  ##### Run from start to finish values for A #####
+  @spec run_from(machine(), instructions_map(), integer(), integer(), instructions_list()) :: nil
+
+  def run_from(_machine, _instructions_map, current, finish, _instructions_list)
+      when current >= finish,
+      do: nil
+
+  def run_from({_a, b, c}, instructions_map, current, finish, instructions_list) do
+    output = run({current, b, c}, instructions_map)
+
+    IO.puts("currently: #{current} - #{output |> Enum.join(",")}")
+
+    run_from({current, b, c}, instructions_map, current + 1, finish, instructions_list)
   end
 
   ##### Check if the provided machine and input generate the input list #####

@@ -1,9 +1,9 @@
 defmodule December15 do
   import Data
+  import Maps.CodepointMap
 
   @empty_character "."
   @wall_character "#"
-
 
   # Day 15 - Part 1 solution
   def part1 do
@@ -23,7 +23,6 @@ defmodule December15 do
   # Day 15 - part 2 solution
 
   def part2 do
-
     doubled = true
     {map, robot, moves} = read(15) |> get_problem(doubled)
 
@@ -83,18 +82,6 @@ defmodule December15 do
     |> Enum.with_index()
     |> Enum.map(fn {v, k} -> {k, v} end)
     |> Map.new()
-  end
-
-  ##### Map output for verification #####
-
-  def visualise_map(map) do
-    Enum.map(map |> Enum.sort(fn {row, _}, {row2, _} -> row < row2 end), fn {_row, line} ->
-      line
-      |> Enum.sort(fn {col, _}, {col2, _} -> col < col2 end)
-      |> Enum.map(fn {_col, char} -> char end)
-      |> Enum.join()
-      |> IO.puts()
-    end)
   end
 
   ##### Move an object on the map, returning the status, new coordinates and new map #####
@@ -165,5 +152,4 @@ defmodule December15 do
     end)
     |> Enum.sum()
   end
-
 end
